@@ -8,7 +8,7 @@
 export default {
   name: 'app',
   created () {
-    console.log('current env:' + process.env.VUE_APP_MODE)
+    console.log('current env:' + process.env.BASE_URL)
   }
 }
 </script>

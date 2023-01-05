@@ -1,19 +1,21 @@
 import axios from 'axios'
-
-let baseURL = ''
-if (process.env.VUE_APP_MODE === 'dev') {
-  baseURL = 'https://www.fastmock.site/mock/5280d505b79dfe8a8da22e96f3e00049/api'
-} else if (process.env.VUE_APP_MODE === 'sit') {
-  baseURL = 'https://www.sit.site/api'
-} else if (process.env.VUE_APP_MODE === 'uat') {
-  baseURL = 'https://www.uat.site/api'
-} else if (process.env.VUE_APP_MODE === 'prod') {
-  baseURL = 'https://www.prod.site/api'
-}
+import store from '@/store/'
 
 const request = axios.create({
-  baseURL: baseURL,
+  baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 5000
+})
+
+axios.interceptors.request.use(config => {
+  const { user } = store.state
+
+  // 如果用户已登录
+  if (user) {
+    config.headers.Authorization = `Bearer ${store.state.user.token}`
+  }
+  return config
+}, error => {
+  return Promise.reject(error)
 })
 
 export default request

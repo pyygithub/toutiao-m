@@ -17,7 +17,8 @@ module.exports = {
       // 函数:可以动态处理返回
       // postcss-pxtorem处理每个CSS文件的时候都会来调用这个函数它会把被处理的cSS文件相关的信息通过参数传递给该函数
       rootValue (res) {
-        return res.file.indexOf('vant') !== -1 ? 37.5 : 75
+        // return res.file.indexOf('vant') !== -1 ? 37.5 : 75
+        return res.file.indexOf('vant') !== -1 ? 37.5 : 37.5
       },
       propList: ['*']
     }
