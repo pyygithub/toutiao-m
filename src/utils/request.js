@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store/'
+import { Toast } from 'vant'
 
 const request = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
@@ -15,6 +16,7 @@ axios.interceptors.request.use(config => {
   }
   return config
 }, error => {
+  Toast.fail('请求超时')
   return Promise.reject(error)
 })
 
