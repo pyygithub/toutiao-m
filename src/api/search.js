@@ -10,3 +10,18 @@ export const getSearchSuggestion = (query) => {
     }
   })
 }
+
+export const getSearchResults = (params) => {
+  return request({
+    method: 'GET',
+    url: '/search',
+    params
+  })
+}
+
+export const getUserSearchHistories = () => {
+  return request({
+    method: 'GET',
+    url: '/search/histories'
+  })
+}
